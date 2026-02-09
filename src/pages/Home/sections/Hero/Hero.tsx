@@ -5,15 +5,19 @@ import EmailIcon from "@mui/icons-material/Email";
 import StyledButton from "../../../../components/StyledButton/StyledButton";
 import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimatedBackground";
 
+
 const StyledHero = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   height: "100vh",
   display: "flex",
   alignItems: "center",
+  [theme.breakpoints.up('xs')]: {
+    PaddingTop: "100px"
+  }
 }));
 
 const StyledImg = styled("img")(({ theme }) => ({
-  width: "80%",
+  width: "70%",
   aspectRatio: "1 / 1",
   objectFit: "cover",
   borderRadius: "50%",
