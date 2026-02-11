@@ -14,15 +14,14 @@ const StyledCard = styled(Card)(({ theme }) => ({
 
 const AboutSection: React.FC = () => {
   const skillsSet = [
+    "C#",
+    "Angular",
     "Javascript",
     "Typescript",
-    "C#",
-    "Next",
-    "Git",
+    "Python",
     "HTML",
     "CSS",
-    "AngularJs",
-    "Python",
+    "Git",
     "SQL",
   ];
 

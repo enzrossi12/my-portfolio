@@ -14,7 +14,7 @@ const ProjectsSection: FC = () => {
     {
       title: "Project Escape The Maze",
       subtitle: "Feb 2025",
-      srcImg: "/src/assets/images/project-escape-the-maze.gif",
+      srcImg: "/src/assets/images/project-escpae-the-maze.gif",
       description:
         "A maze escape game in which a procedural algorithm creates a different layout on every launch. The player moves using the keyboard and must navigate the maze to reach the flag and complete the game.",
       technologies: "Technologies: JavaScript, HTML, CSS",
