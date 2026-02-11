@@ -2,7 +2,7 @@ import About from "./pages/Home/sections/About/About"
 import Hero from "./pages/Home/sections/Hero/Hero"
 import Navbar from "./components/NavBar/NavBar"
 import Projects from "../src/pages/Home/sections/Projects/Projects"
-// import Footer from "./components/Footer/Footer"
+import Footer from "./components/Footer/Footer"
 
 const App: React.FC = () => {
 
@@ -12,7 +12,7 @@ const App: React.FC = () => {
       <Hero />
       <About />
       <Projects />
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 }

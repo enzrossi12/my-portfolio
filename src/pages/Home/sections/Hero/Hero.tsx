@@ -5,6 +5,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import StyledButton from "../../../../components/StyledButton/StyledButton";
 import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimatedBackground";
 import CV from "../../../../assets/PDF/Cv_EnzoSilvaE.pdf";
+import Typewriter from "../../../../components/Typewriter/Typewriter";
 
 const StyledHero = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
@@ -34,18 +35,17 @@ const handleDownload = () => {
 };
 
 const handleEmail = () => {
-  
   const emailAddress = "enzorossi120405@gmail.com";
   const subject = "subject";
   const body = "Hello! Just saw your portfolio...";
 
-  const mailToLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailAddress)}` +
+  const mailToLink =
+    `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailAddress)}` +
     `&su=${encodeURIComponent(subject)}` +
     `&body=${encodeURIComponent(body)}`;
 
   window.open(mailToLink, "_blank", "noopener,noreferrer");
 };
-
 
 const Hero = () => {
   return (
@@ -71,14 +71,13 @@ const Hero = () => {
               >
                 Enzo Rossi
               </Typography>
-              <Typography
-                color="primary.contrastText"
+              <Typewriter
+                text="I'm a Software Engineer"
+                delay={120}
                 variant="h2"
-                textAlign="center"
-                pb={2}
-              >
-                I'm a Software Engineer
-              </Typography>
+                color="primary.contrastText"
+              />
+
               <Grid
                 container
                 display="flex"
@@ -101,7 +100,7 @@ const Hero = () => {
                   display="flex"
                   justifyContent="center"
                 >
-                  <StyledButton  onClick={() => handleEmail()}>
+                  <StyledButton onClick={() => handleEmail()}>
                     <EmailIcon />
                     <Typography>Contact Me</Typography>
                   </StyledButton>
