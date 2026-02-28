@@ -4,7 +4,7 @@ import DownloadIcon from "@mui/icons-material/Download";
 import EmailIcon from "@mui/icons-material/Email";
 import StyledButton from "../../../../components/StyledButton/StyledButton";
 import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimatedBackground";
-import CV from "../../../../assets/PDF/Cv_EnzoSilvaE.pdf";
+import CV from "../../../../assets/PDF/EnzoRossi_CV.pdf";
 import Typewriter from "../../../../components/Typewriter/Typewriter";
 
 const StyledHero = styled("div")(({ theme }) => ({
@@ -28,7 +28,7 @@ const StyledImg = styled("img")(({ theme }) => ({
 const handleDownload = () => {
   const link = document.createElement("a");
   link.href = CV;
-  link.download = "Cv_EnzoSilvaE.pdf";
+  link.download = "EnzoRossi_CV.pdf";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

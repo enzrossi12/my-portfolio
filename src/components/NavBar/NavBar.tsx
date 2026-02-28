@@ -7,6 +7,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { styled } from "@mui/material";
+// import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
 
 export const StyledNavLink = styled("a")(() => ({
   textDecoration: "none",
