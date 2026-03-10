@@ -84,8 +84,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>(getInitialLanguage);
 
   const setLanguage = (lang: Language) => {
+    if (lang === language) return;
     localStorage.setItem("language", lang);
     setLanguageState(lang);
+    window.location.reload();
   };
 
   const value = useMemo(
