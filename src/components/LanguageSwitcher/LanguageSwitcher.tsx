@@ -22,14 +22,22 @@ export default function LanguageSwitcher() {
         backgroundColor: "rgba(255,255,255,0.08)",
         borderRadius: "10px",
         ".MuiToggleButton-root": {
-          color: "inherit",
+          color: "#fff",
           borderColor: "rgba(255,255,255,0.18)",
           px: 1.2,
           fontSize: "0.75rem",
           fontWeight: 700,
+          textTransform: "none",
         },
         ".Mui-selected": {
-          backgroundColor: "rgba(255,255,255,0.18)",
+          color: "#fff !important",
+          backgroundColor: "rgba(255,255,255,0.12) !important",
+          boxShadow:
+            "inset 0 1px 1px rgba(255,255,255,0.25), inset 0 -1px 2px rgba(0,0,0,0.35), 0 2px 6px rgba(0,0,0,0.25)",
+          transform: "translateY(1px)",
+        },
+        ".MuiToggleButton-root:hover": {
+          backgroundColor: "rgba(255,255,255,0.14)",
         },
       }}
     >
