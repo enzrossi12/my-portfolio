@@ -5,11 +5,13 @@ import StyledButton from "../StyledButton/StyledButton";
 export interface ProjectCardProps {
   title: string;
   subtitle: string;
-  srcImg?: string;          
+  srcImg?: string;
   description: string;
   technologies: string;
   websiteURL: string;
   codeURL: string;
+  viewProjectLabel?: string;
+  viewCodeLabel?: string;
 }
 
 const StyledImg = styled("img")(({ theme }) => ({
@@ -42,6 +44,8 @@ const ProjectCard: FC<ProjectCardProps> = ({
   technologies,
   websiteURL,
   codeURL,
+  viewProjectLabel = "View project",
+  viewCodeLabel = "View code",
 }) => {
   const openLink = (url: string) => {
     window.open(url, "_blank", "noopener,noreferrer");
@@ -64,13 +68,13 @@ const ProjectCard: FC<ProjectCardProps> = ({
       <Grid container spacing={1} pt={2}>
         <Grid size ={{ xs: 6 }}>
           <StyledButton onClick={() => openLink(websiteURL)}>
-            View Project
+            {viewProjectLabel}
           </StyledButton>
         </Grid>
 
         <Grid size ={{ xs: 6 }}>
           <StyledButton onClick={() => openLink(codeURL)}>
-            View Code
+            {viewCodeLabel}
           </StyledButton>
         </Grid>
       </Grid>

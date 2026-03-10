@@ -2,11 +2,13 @@ import { Box, Container, IconButton, Typography } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
+import { useLanguage } from "../../contexts/LanguageContext/LanguageContext";
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
   const emailAddress = "enzorossi120405@gmail.com";
-  const subject = "Contact from your portfolio";
-  const body = "Hi Enzo,";
+  const subject = t("mail.footer.subject");
+  const body = t("mail.footer.body");
 
   const handleEmailClick = () => {
     const mailToLink =
@@ -52,7 +54,7 @@ const Footer: React.FC = () => {
         </Box>
 
         <Typography textAlign="center">
-          © 2026 Enzo Rossi - All rights reserved
+          © 2026 Enzo Rossi - {t("footer.rights")}
         </Typography>
       </Container>
     </Box>

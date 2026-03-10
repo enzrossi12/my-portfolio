@@ -1,59 +1,43 @@
-// import { useLanguage, type Language } from '../../contexts/LanguageContext';
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { useLanguage, type Language } from "../../contexts/LanguageContext/LanguageContext";
 
-// const LANGUAGES: { code: Language; label: string }[] = [
-//   { code: 'en', label: 'EN' },
-//   { code: 'pt', label: 'PT' },
-// ];
+const LANGUAGES: { code: Language; label: string }[] = [
+  { code: "pt-BR", label: "PT-BR" },
+  { code: "en", label: "EN" },
+];
 
-// export default function LanguageSwitcher() {
-//   const { language, setLanguage } = useLanguage();
+export default function LanguageSwitcher() {
+  const { language, setLanguage } = useLanguage();
 
-//   return (
-//     <div style={styles.wrapper}>
-//       {LANGUAGES.map(({ code, label }, i) => (
-//         <button
-//           key={code}
-//           onClick={() => setLanguage(code)}
-//           aria-label={`Switch to ${code.toUpperCase()}`}
-//           style={{
-//             ...styles.btn,
-//             ...(i === 0 ? styles.btnLeft : styles.btnRight),
-//             ...(language === code ? styles.btnActive : styles.btnInactive),
-//           }}
-//         >
-//           {label}
-//         </button>
-//       ))}
-//     </div>
-//   );
-// }
-
-// const styles: Record<string, React.CSSProperties> = {
-//   wrapper: {
-//     display: 'inline-flex',
-//     borderRadius: 6,
-//     overflow: 'hidden',
-//     border: '1px solid rgba(255,255,255,0.3)',
-//   },
-//   btn: {
-//     padding: '4px 12px',
-//     fontSize: 13,
-//     fontWeight: 600,
-//     letterSpacing: '0.05em',
-//     cursor: 'pointer',
-//     border: 'none',
-//     transition: 'background 0.2s, color 0.2s',
-//   },
-//   btnLeft: {
-//     borderRight: '1px solid rgba(255,255,255,0.3)',
-//   },
-//   btnRight: {},
-//   btnActive: {
-//     background: '#fff',
-//     color: '#111',
-//   },
-//   btnInactive: {
-//     background: 'transparent',
-//     color: 'rgba(255,255,255,0.7)',
-//   },
-// };
+  return (
+    <ToggleButtonGroup
+      exclusive
+      size="small"
+      value={language}
+      aria-label="language switcher"
+      onChange={(_, value: Language | null) => {
+        if (value) setLanguage(value);
+      }}
+      sx={{
+        backgroundColor: "rgba(255,255,255,0.08)",
+        borderRadius: "10px",
+        ".MuiToggleButton-root": {
+          color: "inherit",
+          borderColor: "rgba(255,255,255,0.18)",
+          px: 1.2,
+          fontSize: "0.75rem",
+          fontWeight: 700,
+        },
+        ".Mui-selected": {
+          backgroundColor: "rgba(255,255,255,0.18)",
+        },
+      }}
+    >
+      {LANGUAGES.map(({ code, label }) => (
+        <ToggleButton key={code} value={code} aria-label={`Switch to ${label}`}>
+          {label}
+        </ToggleButton>
+      ))}
+    </ToggleButtonGroup>
+  );
+}

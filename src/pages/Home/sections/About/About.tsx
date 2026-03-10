@@ -2,6 +2,7 @@ import { Box, Card, Container, Grid, Typography, styled } from "@mui/material";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import SchoolIcon from "@mui/icons-material/School";
 import AnimationComponent from "../../../../components/AnimationComponent/AnimationComponent";
+import { useLanguage } from "../../../../contexts/LanguageContext/LanguageContext";
 
 const StyledCard = styled(Card)(({ theme }) => ({
   padding: "10px 10px",
@@ -13,6 +14,8 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
 
 const AboutSection: React.FC = () => {
+  const { t } = useLanguage();
+
   const skillsSet = [
     "C#",
     "Angular",
@@ -30,7 +33,7 @@ const AboutSection: React.FC = () => {
       <Container maxWidth="lg">
         <Box id="about" pt={5} mb={3}>
           <Typography variant="h2" textAlign="center">
-            About me
+            {t("about.title")}
           </Typography>
         </Box>
         <Grid
@@ -45,11 +48,11 @@ const AboutSection: React.FC = () => {
               <StyledCard variant="outlined">
                 <WorkspacePremiumIcon />
                 <Typography textAlign="center" fontWeight={600}>
-                  Experience
+                  {t("about.experience")}
                 </Typography>
-                <Typography textAlign="center">1 year</Typography>
+                <Typography textAlign="center">{t("about.year")}</Typography>
                 <Typography textAlign="center">
-                  FullStack Development
+                  {t("about.fullstack")}
                 </Typography>
               </StyledCard>
             </AnimationComponent>
@@ -59,30 +62,21 @@ const AboutSection: React.FC = () => {
               <StyledCard variant="outlined">
                 <SchoolIcon />
                 <Typography textAlign="center" fontWeight={600}>
-                  Education
+                  {t("about.education")}
                 </Typography>
-                <Typography textAlign="center">Bachelors Degree</Typography>
-                <Typography textAlign="center">Computer Science</Typography>
+                <Typography textAlign="center">{t("about.degree")}</Typography>
+                <Typography textAlign="center">{t("about.course")}</Typography>
               </StyledCard>
             </AnimationComponent>
           </Grid>
         </Grid>
         <Box pb={1}>
-          <Typography>
-            Software Engineer with experience in backend and frontend
-            development, systems integration and Python automation. I have
-            worked with C# .NET and Angular in real-world projects, developing
-            features, fixing bugs and improving existing systems. I also created
-            automation scripts to process data and integrate systems through XML
-            and FTP. I am currently seeking opportunities to continue growing as
-            a software engineer and to contribute to practical and impactful
-            projects.
-          </Typography>
+          <Typography>{t("about.description")}</Typography>
         </Box>
         <hr />
         <Box id="skills" pt={1} mb={3}>
           <Typography variant="h3" textAlign="center" fontWeight={300}>
-            Skills
+            {t("about.skills")}
           </Typography>
         </Box>
         <Box mb={5}>

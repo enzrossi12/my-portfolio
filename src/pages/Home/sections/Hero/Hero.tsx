@@ -6,6 +6,7 @@ import StyledButton from "../../../../components/StyledButton/StyledButton";
 import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimatedBackground";
 import CV from "../../../../assets/PDF/EnzoRossi_CV.pdf";
 import Typewriter from "../../../../components/Typewriter/Typewriter";
+import { useLanguage } from "../../../../contexts/LanguageContext/LanguageContext";
 
 const StyledHero = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
@@ -34,10 +35,8 @@ const handleDownload = () => {
   document.body.removeChild(link);
 };
 
-const handleEmail = () => {
+const handleEmail = (subject: string, body: string) => {
   const emailAddress = "enzorossi120405@gmail.com";
-  const subject = "subject";
-  const body = "Hello! Just saw your portfolio...";
 
   const mailToLink =
     `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailAddress)}` +
@@ -48,6 +47,8 @@ const handleEmail = () => {
 };
 
 const Hero = () => {
+  const { t } = useLanguage();
+
   return (
     <>
       <StyledHero>
@@ -72,7 +73,7 @@ const Hero = () => {
                 Enzo Rossi
               </Typography>
               <Typewriter
-                text="I'm a Software Engineer"
+                text={t("hero.role")}
                 delay={120}
                 variant="h2"
                 color="primary.contrastText"
@@ -92,7 +93,7 @@ const Hero = () => {
                 >
                   <StyledButton onClick={() => handleDownload()}>
                     <DownloadIcon />
-                    <Typography>Download CV</Typography>
+                    <Typography>{t("hero.downloadCv")}</Typography>
                   </StyledButton>
                 </Grid>
                 <Grid
@@ -100,9 +101,9 @@ const Hero = () => {
                   display="flex"
                   justifyContent="center"
                 >
-                  <StyledButton onClick={() => handleEmail()}>
+                  <StyledButton onClick={() => handleEmail(t("mail.hero.subject"), t("mail.hero.body"))}>
                     <EmailIcon />
-                    <Typography>Contact Me</Typography>
+                    <Typography>{t("hero.contactMe")}</Typography>
                   </StyledButton>
                 </Grid>
               </Grid>

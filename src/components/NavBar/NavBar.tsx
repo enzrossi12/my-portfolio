@@ -7,7 +7,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { styled } from "@mui/material";
-// import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
+import { useLanguage } from "../../contexts/LanguageContext/LanguageContext";
 
 export const StyledNavLink = styled("a")(() => ({
   textDecoration: "none",
@@ -98,6 +99,7 @@ const MobileMenuItem = styled(MenuItem)(({ theme }) => ({
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const { t } = useLanguage();
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -122,6 +124,7 @@ export default function Navbar() {
 
       >
         <StyledMobileToolbar>
+          <LanguageSwitcher />
           <IconButton
             size="large"
             aria-label="open navigation menu"
@@ -142,31 +145,33 @@ export default function Navbar() {
             onClose={handleClose}
           >
             <MobileMenuItem onClick={() => handleSmoothScroll("about")}>
-              <StyledNavLink>About</StyledNavLink>
+              <StyledNavLink>{t("nav.about")}</StyledNavLink>
             </MobileMenuItem>
 
             <MobileMenuItem onClick={() => handleSmoothScroll("skills")}>
-              <StyledNavLink>Skills</StyledNavLink>
+              <StyledNavLink>{t("nav.skills")}</StyledNavLink>
             </MobileMenuItem>
 
             <MobileMenuItem onClick={() => handleSmoothScroll("projects")}>
-              <StyledNavLink>Projects</StyledNavLink>
+              <StyledNavLink>{t("nav.projects")}</StyledNavLink>
             </MobileMenuItem>
           </Menu>
         </StyledMobileToolbar>
 
         <StyledDesktopToolbar variant="regular">
           <DesktopNavItem onClick={() => handleSmoothScroll("about")}>
-            About
+            {t("nav.about")}
           </DesktopNavItem>
 
           <DesktopNavItem onClick={() => handleSmoothScroll("skills")}>
-            Skills
+            {t("nav.skills")}
           </DesktopNavItem>
 
           <DesktopNavItem onClick={() => handleSmoothScroll("projects")}>
-            Projects
+            {t("nav.projects")}
           </DesktopNavItem>
+
+          <LanguageSwitcher />
         </StyledDesktopToolbar>
       </AppBar>
     </Box>
