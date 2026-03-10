@@ -5,6 +5,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import StyledButton from "../../../../components/StyledButton/StyledButton";
 import { AnimatedBackground } from "../../../../components/AnimatedBackground/AnimatedBackground";
 import CV from "../../../../assets/PDF/EnzoRossi_CV.pdf";
+import CVPtBr from "../../../../assets/PDF/CV_EnzoRossi.pdf";
 import Typewriter from "../../../../components/Typewriter/Typewriter";
 import { useLanguage } from "../../../../contexts/LanguageContext/LanguageContext";
 
@@ -26,10 +27,10 @@ const StyledImg = styled("img")(({ theme }) => ({
   border: `1px solid ${theme.palette.primary.contrastText}`,
 }));
 
-const handleDownload = () => {
+const handleDownload = (fileUrl: string, fileName: string) => {
   const link = document.createElement("a");
-  link.href = CV;
-  link.download = "EnzoRossi_CV.pdf";
+  link.href = fileUrl;
+  link.download = fileName;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -47,7 +48,10 @@ const handleEmail = (subject: string, body: string) => {
 };
 
 const Hero = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isPtBr = language === "pt-BR";
+  const cvFile = isPtBr ? CVPtBr : CV;
+  const cvFileName = isPtBr ? "CV_EnzoRossi.pdf" : "EnzoRossi_CV.pdf";
 
   return (
     <>
@@ -91,7 +95,7 @@ const Hero = () => {
                   display="flex"
                   justifyContent="center"
                 >
-                  <StyledButton onClick={() => handleDownload()}>
+                  <StyledButton onClick={() => handleDownload(cvFile, cvFileName)}>
                     <DownloadIcon />
                     <Typography>{t("hero.downloadCv")}</Typography>
                   </StyledButton>
