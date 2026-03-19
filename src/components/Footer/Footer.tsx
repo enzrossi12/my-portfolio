@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
           <IconButton
             onClick={() =>
               window.open(
-                "https://www.linkedin.com/in/enzo-rossi-ribeiro-da-silva/",
+                "https://www.linkedin.com/in/rossidev/",
                 "_blank",
               )
             }

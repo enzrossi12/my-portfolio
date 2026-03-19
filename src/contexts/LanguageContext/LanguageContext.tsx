@@ -8,7 +8,7 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-const DEFAULT_LANGUAGE: Language = "pt-BR";
+const DEFAULT_LANGUAGE: Language = "en";
 
 const translations: Record<Language, Record<string, string>> = {
   "pt-BR": {
@@ -77,7 +77,7 @@ const getInitialLanguage = (): Language => {
   const saved = localStorage.getItem("language");
   if (saved === "pt-BR" || saved === "en") return saved;
 
-  return navigator.language.toLowerCase().startsWith("pt") ? "pt-BR" : DEFAULT_LANGUAGE;
+  return DEFAULT_LANGUAGE;
 };
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
