@@ -24,6 +24,17 @@ const ProjectsSection: FC = () => {
       viewProjectLabel: t("project.viewProject"),
       viewCodeLabel: t("project.viewCode"),
     },
+    
+    {
+      title: "Project To-do List API",
+      subtitle: "Mar 2026",
+      srcImg: "/patrick-star.gif",
+      description: t("projects.todo.description"),
+      technologies: t("projects.todo.tech"),
+      codeURL: "https://github.com/enzrossi12/TodoApi",
+      viewProjectLabel: t("project.viewProject"),
+      viewCodeLabel: t("project.viewCode"),
+    },
   ];
 
   return (

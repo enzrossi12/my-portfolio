@@ -29,9 +29,12 @@ const translations: Record<Language, Record<string, string>> = {
       "Engenheiro de software com experiencia em desenvolvimento backend e frontend, integracao de sistemas e automacao com Python. Trabalhei com C# .NET e Angular em projetos reais, desenvolvendo funcionalidades, corrigindo bugs e melhorando sistemas existentes. Tambem criei scripts de automacao para processar dados e integrar sistemas por XML e FTP. Atualmente busco oportunidades para continuar crescendo como engenheiro de software e contribuir com projetos praticos e de impacto.",
     "about.skills": "Skills",
     "projects.title": "Projetos",
+    "projects.todo.description":
+      "API de uma to-do list funcional onde o usuário pode criar, deletar ou alterar tarefas de acordo com sua necessidade",
     "projects.maze.description":
       "Um jogo de labirinto no qual um algoritmo procedural cria um layout diferente a cada partida. O jogador se move pelo teclado e precisa chegar ate a bandeira para vencer.",
     "projects.maze.tech": "Tecnologias: JavaScript, HTML, CSS",
+    "projects.todo.tech": "Tecnologias: C#",
     "project.viewProject": "Ver projeto",
     "project.viewCode": "Ver codigo",
     "footer.rights": "Todos os direitos reservados",
@@ -58,9 +61,12 @@ const translations: Record<Language, Record<string, string>> = {
       "Software Engineer with experience in backend and frontend development, systems integration and Python automation. I have worked with C# .NET and Angular in real-world projects, developing features, fixing bugs and improving existing systems. I also created automation scripts to process data and integrate systems through XML and FTP. I am currently seeking opportunities to continue growing as a software engineer and to contribute to practical and impactful projects.",
     "about.skills": "Skills",
     "projects.title": "Projects",
+    "projects.todo.description":
+      "API for a functional to-do list where users can create, delete, and update tasks based on their needs.",
     "projects.maze.description":
       "A maze escape game in which a procedural algorithm creates a different layout on every launch. The player moves using the keyboard and must navigate the maze to reach the flag and complete the game.",
     "projects.maze.tech": "Technologies: JavaScript, HTML, CSS",
+    "projects.todo.tech": "Technologies: C#",
     "project.viewProject": "View project",
     "project.viewCode": "View code",
     "footer.rights": "All rights reserved",

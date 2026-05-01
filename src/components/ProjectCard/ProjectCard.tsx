@@ -8,7 +8,7 @@ export interface ProjectCardProps {
   srcImg?: string;
   description: string;
   technologies: string;
-  websiteURL: string;
+  websiteURL?: string;
   codeURL: string;
   viewProjectLabel?: string;
   viewCodeLabel?: string;
@@ -66,13 +66,15 @@ const ProjectCard: FC<ProjectCardProps> = ({
       </Typography>
 
       <Grid container spacing={1} pt={2}>
-        <Grid size ={{ xs: 6 }}>
-          <StyledButton onClick={() => openLink(websiteURL)}>
-            {viewProjectLabel}
-          </StyledButton>
-        </Grid>
+        {websiteURL ? (
+          <Grid size={{ xs: 6 }}>
+            <StyledButton onClick={() => openLink(websiteURL)}>
+              {viewProjectLabel}
+            </StyledButton>
+          </Grid>
+        ) : null}
 
-        <Grid size ={{ xs: 6 }}>
+        <Grid size={{ xs: websiteURL ? 6 : 12 }}>
           <StyledButton onClick={() => openLink(codeURL)}>
             {viewCodeLabel}
           </StyledButton>
