@@ -1,0 +1,126 @@
+import { createContext } from "react";
+
+export type Language = "pt-BR" | "en";
+
+export interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
+}
+
+export const DEFAULT_LANGUAGE: Language = "en";
+
+export const translations: Record<Language, Record<string, string>> = {
+  "pt-BR": {
+    "nav.about": "Sobre",
+    "nav.skills": "Skills",
+    "nav.experience": "Experiencia",
+    "nav.projects": "Projetos",
+    "nav.contact": "Contato",
+    "section.aboutLabel": "~ pg. 01 - sobre mim",
+    "section.skillsLabel": "~ pg. 02 - skills",
+    "section.experienceLabel": "~ pg. 03 - experiencia",
+    "section.projectsLabel": "~ pg. 04 - projetos",
+    "hero.greeting": "Opa,\nsou o Enzo",
+    "hero.role": "Sou Engenheiro de Software",
+    "hero.tagline": "e construo coisas",
+    "hero.keepScrolling": "continue rolando",
+    "hero.portraitLabel": "= autorretrato em grafite =",
+    "hero.annotation": "pensando em\narquitetura limpa",
+    "hero.downloadCv": "Download CV",
+    "hero.contactMe": "Entre em contato",
+    "about.title": "Sobre mim",
+    "about.experience": "Experiencia",
+    "about.year": "1 ano",
+    "about.fullstack": "Desenvolvimento Full Stack",
+    "about.education": "Formacao",
+    "about.degree": "Bacharelado",
+    "about.course": "Ciencia da Computacao",
+    "about.description":
+      "Engenheiro de software com experiencia em desenvolvimento backend e frontend, integracao de sistemas e automacao com Python. Trabalhei com C# .NET e Angular em projetos reais, desenvolvendo funcionalidades, corrigindo bugs e melhorando sistemas existentes. Tambem criei scripts de automacao para processar dados e integrar sistemas por XML e FTP. Atualmente busco oportunidades para continuar crescendo como engenheiro de software e contribuir com projetos praticos e de impacto.",
+    "about.skills": "O que eu sei",
+    "about.skillsNote": "...e uma vontade teimosa de aprender a proxima coisa.",
+    "experience.title": "Onde eu estive",
+    "experience.atweb.title": "Junior Full Stack Developer (.NET)",
+    "experience.atweb.company": "@ ATweb",
+    "experience.atweb.period": "Catanduva, SP",
+    "experience.atweb.description": "Trabalhei no desenvolvimento e manutencao de aplicacoes usando C# .NET no backend e Razor (cshtml) e JavaScript no frontend. Realizei integracoes com APIs e sistemas externos, garantindo comunicacao e consistencia de dados entre plataformas. Otimizei a performance de servicos, alcancando uma melhoria de mais de 20% no tempo de processamento.",
+    "experience.integrativa.title": "Integration/Development Intern",
+    "experience.integrativa.company": "@ Integrativa",
+    "experience.integrativa.period": "Catanduva, SP",
+    "experience.integrativa.description": "Trabalhei no desenvolvimento do software Interlitis, usando C# .NET no backend e Angular no frontend. Desenvolvi um script de automacao em Python para coletar valores e taxas especificas, atualizando um arquivo XML mensalmente e enviando automaticamente para um servidor FTP. Colaborei com os times de Integracao e Desenvolvimento na execucao de tarefas, correcao de bugs e melhorias de codigo.",
+    "experience.note": "sempre aprendendo",
+    "projects.title": "O que construi",
+    "projects.note": "algumas coisas que me dao orgulho",
+    "projects.todo.description":
+      "API de uma to-do list funcional onde o usuario pode criar, deletar ou alterar tarefas de acordo com sua necessidade",
+    "projects.maze.description":
+      "Um jogo de labirinto no qual um algoritmo procedural cria um layout diferente a cada partida. O jogador se move pelo teclado e precisa chegar ate a bandeira para vencer.",
+    "projects.maze.tech": "Tecnologias: JavaScript, HTML, CSS",
+    "projects.todo.tech": "Tecnologias: C#",
+    "project.viewProject": "abrir projeto ->",
+    "project.viewCode": "ver codigo ->",
+    "footer.rights": "Todos os direitos reservados",
+    "mail.hero.subject": "Contato pelo portfolio",
+    "mail.hero.body": "Ola! Acabei de ver seu portfolio...",
+    "mail.footer.subject": "Contato pelo seu portfolio",
+    "mail.footer.body": "Oi Enzo,",
+  },
+  en: {
+    "nav.about": "about",
+    "nav.skills": "skills",
+    "nav.experience": "experience",
+    "nav.projects": "projects",
+    "nav.contact": "contact",
+    "section.aboutLabel": "~ pg. 01 - about me",
+    "section.skillsLabel": "~ pg. 02 - skills",
+    "section.experienceLabel": "~ pg. 03 - experience",
+    "section.projectsLabel": "~ pg. 04 - projects",
+    "hero.greeting": "Hello,\nI'm Enzo.",
+    "hero.role": "I'm a Software Engineer",
+    "hero.tagline": "and I build stuff",
+    "hero.keepScrolling": "keep scrolling",
+    "hero.portraitLabel": "= self portrait in graphite =",
+    "hero.annotation": "thinking about\nclean architecture",
+    "hero.downloadCv": "Download CV",
+    "hero.contactMe": "Contact Me",
+    "about.title": "About me",
+    "about.experience": "Experience",
+    "about.year": "1 year",
+    "about.fullstack": "Full Stack Development",
+    "about.education": "Education",
+    "about.degree": "Bachelor's Degree",
+    "about.course": "Computer Science",
+    "about.description":
+      "Software Engineer with experience in backend and frontend development, systems integration and Python automation. I have worked with C# .NET and Angular in real-world projects, developing features, fixing bugs and improving existing systems. I also created automation scripts to process data and integrate systems through XML and FTP. I am currently seeking opportunities to continue growing as a software engineer and to contribute to practical and impactful projects.",
+    "about.skills": "Things I can do",
+    "about.skillsNote": "...and a stubborn willingness to learn the next thing.",
+    "experience.title": "Where I've been",
+    "experience.atweb.title": "Junior Full Stack Developer (.NET)",
+    "experience.atweb.company": "@ ATweb",
+    "experience.atweb.period": "Catanduva, SP",
+    "experience.atweb.description": "Worked on the development and maintenance of applications using C# .NET on the backend and Razor (cshtml) and JavaScript on the frontend. Performed integrations with APIs and external systems, ensuring communication and data consistency across platforms. Optimized service performance, achieving an improvement of over 20% in processing time.",
+    "experience.integrativa.title": "Integration/Development Intern",
+    "experience.integrativa.company": "@ Integrativa",
+    "experience.integrativa.period": "Catanduva, SP",
+    "experience.integrativa.description": "Worked on the development of the Interlitis software, using C# .NET on the backend and Angular on the frontend. Developed a Python automation script to collect specific values and rates, updating an XML file monthly and automatically sending it to an FTP server. Collaborated with the Integration and Development teams on task execution, bug fixing, and code improvements.",
+    "experience.note": "always learning",
+    "projects.title": "Stuff I built",
+    "projects.note": "some things I'm proud of",
+    "projects.todo.description":
+      "API for a functional to-do list where users can create, delete, and update tasks based on their needs.",
+    "projects.maze.description":
+      "A maze escape game in which a procedural algorithm creates a different layout on every launch. The player moves using the keyboard and must navigate the maze to reach the flag and complete the game.",
+    "projects.maze.tech": "Technologies: JavaScript, HTML, CSS",
+    "projects.todo.tech": "Technologies: C#",
+    "project.viewProject": "open project ->",
+    "project.viewCode": "view code ->",
+    "footer.rights": "All rights reserved",
+    "mail.hero.subject": "Contact from portfolio",
+    "mail.hero.body": "Hello! I just saw your portfolio...",
+    "mail.footer.subject": "Contact from your portfolio",
+    "mail.footer.body": "Hi Enzo,",
+  },
+};
+
+export const LanguageContext = createContext<LanguageContextType | null>(null);
