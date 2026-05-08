@@ -7,6 +7,7 @@ interface TypewriterProps {
   delay: number;
   variant?: TypographyProps["variant"];
   color?: TypographyProps["color"];
+  onComplete?: () => void;
 }
 
 const Typewriter: React.FC<TypewriterProps> = ({
@@ -14,6 +15,7 @@ const Typewriter: React.FC<TypewriterProps> = ({
   delay,
   variant,
   color,
+  onComplete,
 }) => {
   const [currentText, setCurrentText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -27,7 +29,9 @@ const Typewriter: React.FC<TypewriterProps> = ({
 
       return () => clearTimeout(timeout);
     }
-  }, [currentIndex, delay, text]);
+
+    onComplete?.();
+  }, [currentIndex, delay, onComplete, text]);
 
   return (
     <Typography variant={variant} color={color} textAlign="center">

@@ -7,31 +7,34 @@ interface ButtonProps {
 }
 
 const StyledButton = styled("button")(({ theme }) => ({
-  backgroundColor: "transparent",
-  border: `1.5px solid ${theme.palette.primary.light}`,
-  color: "#fff",
-  borderRadius: "8px",
-  padding: "8px 20px",
+  position: "relative",
+  backgroundColor: "rgba(251, 244, 230, 0.3)",
+  border: `1.5px solid rgba(47, 52, 56, 0.45)`,
+  color: theme.palette.primary.main,
+  borderRadius: "2px 7px 3px 6px",
+  padding: "9px 18px",
   display: "inline-flex",
   alignItems: "center",
   justifyContent: "center",
   gap: "10px",
   cursor: "pointer",
-  fontWeight: 500,
-  letterSpacing: "0.5px",
-  transition: "all 220ms ease",
+  fontFamily: theme.typography.fontFamily,
+  fontWeight: 800,
+  transition: "transform 180ms ease, background-color 180ms ease, border-color 180ms ease",
+  boxShadow: "3px 4px 0 rgba(47, 52, 56, 0.08)",
 
   "&:hover": {
-    borderColor: theme.palette.primary.main,
-    backgroundColor: "rgba(255,255,255,0.05)",
+    borderColor: theme.palette.secondary.main,
+    backgroundColor: "rgba(200, 92, 74, 0.08)",
+    transform: "rotate(-1deg) translateY(-1px)",
   },
 
   "&:active": {
-    transform: "scale(0.97)",
+    transform: "scale(0.98)",
   },
 
   "&:focus-visible": {
-    outline: `2px solid ${theme.palette.primary.main}`,
+    outline: `2px dashed ${theme.palette.secondary.main}`,
     outlineOffset: "3px",
   },
 }));

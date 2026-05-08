@@ -1,4 +1,4 @@
-import { Grid, Typography, styled } from "@mui/material";
+import { Box, Grid, Stack, Typography, styled } from "@mui/material";
 import type { FC } from "react";
 import StyledButton from "../StyledButton/StyledButton";
 
@@ -14,26 +14,35 @@ export interface ProjectCardProps {
   viewCodeLabel?: string;
 }
 
-const StyledImg = styled("img")(({ theme }) => ({
-  width: "100%",
-  objectFit: "contain",
-  height: "80vw",
-  padding: "10px 0",
-  [theme.breakpoints.up("md")]: {
-    height: "45vh",
+const StyledCard = styled("article")(({ theme }) => ({
+  position: "relative",
+  border: `2px solid rgba(47, 52, 56, 0.34)`,
+  backgroundColor: "rgba(251, 244, 230, 0.42)",
+  color: theme.palette.text.primary,
+  padding: theme.spacing(2),
+  boxShadow: "5px 6px 0 rgba(47, 52, 56, 0.06)",
+  transition: "transform 180ms ease, border-color 180ms ease",
+  "&:hover": {
+    transform: "rotate(-0.6deg) translateY(-2px)",
+    borderColor: theme.palette.secondary.main,
   },
 }));
 
-const StyledCard = styled("div")(({ theme }) => ({
-  borderRadius: "3px",
-  border: `0.5px solid ${theme.palette.primary.contrastText}`,
-  backgroundColor: "transparent",
-  color: theme.palette.primary.contrastText,
-  padding: "20px",
-  transition: "background-color 150ms ease",
-  "&:hover": {
-    backgroundColor: theme.palette.primary.light,
+const StyledImg = styled("img")(({ theme }) => ({
+  width: "100%",
+  height: "170px",
+  objectFit: "cover",
+  border: `1.5px solid rgba(47, 52, 56, 0.28)`,
+  filter: "grayscale(1) contrast(0.9) sepia(0.14)",
+  opacity: 0.82,
+  [theme.breakpoints.up("md")]: {
+    height: "180px",
   },
+}));
+
+const ProjectTag = styled(Typography)(({ theme }) => ({
+  color: theme.palette.secondary.main,
+  fontWeight: 800,
 }));
 
 const ProjectCard: FC<ProjectCardProps> = ({
@@ -53,31 +62,34 @@ const ProjectCard: FC<ProjectCardProps> = ({
 
   return (
     <StyledCard>
-      <Typography variant="h5">{title}</Typography>
+      <Grid container spacing={3} alignItems="center">
+        <Grid size={{ xs: 12, md: 4 }}>
+          {srcImg ? <StyledImg src={srcImg} alt={title} /> : null}
+        </Grid>
 
-      <Typography>{subtitle}</Typography>
+        <Grid size={{ xs: 12, md: 8 }}>
+          <Stack direction="row" justifyContent="space-between" gap={2}>
+            <Typography variant="h5">{title}</Typography>
+            <ProjectTag>{subtitle}</ProjectTag>
+          </Stack>
 
-      {srcImg ? <StyledImg src={srcImg} alt={title} /> : null}
+          <Typography pt={1}>{description}</Typography>
 
-      <Typography>{description}</Typography>
+          <Typography color="text.secondary" pt={1.5}>
+            {technologies}
+          </Typography>
 
-      <Typography fontWeight={600} pt={2}>
-        {technologies}
-      </Typography>
+          <Box display="flex" flexWrap="wrap" gap={1.5} pt={2}>
+            {websiteURL ? (
+              <StyledButton onClick={() => openLink(websiteURL)}>
+                {viewProjectLabel}
+              </StyledButton>
+            ) : null}
 
-      <Grid container spacing={1} pt={2}>
-        {websiteURL ? (
-          <Grid size={{ xs: 6 }}>
-            <StyledButton onClick={() => openLink(websiteURL)}>
-              {viewProjectLabel}
+            <StyledButton onClick={() => openLink(codeURL)}>
+              {viewCodeLabel}
             </StyledButton>
-          </Grid>
-        ) : null}
-
-        <Grid size={{ xs: websiteURL ? 6 : 12 }}>
-          <StyledButton onClick={() => openLink(codeURL)}>
-            {viewCodeLabel}
-          </StyledButton>
+          </Box>
         </Grid>
       </Grid>
     </StyledCard>

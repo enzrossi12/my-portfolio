@@ -6,9 +6,9 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { styled } from "@mui/material";
+import { Stack, styled } from "@mui/material";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
-import { useLanguage } from "../../contexts/LanguageContext/LanguageContext";
+import { useLanguage } from "../../contexts/LanguageContext/useLanguage";
 
 export const StyledNavLink = styled("a")(() => ({
   textDecoration: "none",
@@ -16,9 +16,11 @@ export const StyledNavLink = styled("a")(() => ({
 }));
 
 export const StyledMobileToolbar = styled(Toolbar)(({ theme }) => ({
+  minHeight: "72px",
+  color: theme.palette.primary.main,
   [theme.breakpoints.up("xs")]: {
     display: "flex",
-    justifyContent: "end",
+    justifyContent: "space-between",
   },
   [theme.breakpoints.up("md")]: {
     display: "none",
@@ -26,12 +28,15 @@ export const StyledMobileToolbar = styled(Toolbar)(({ theme }) => ({
 }));
 
 export const StyledDesktopToolbar = styled(Toolbar)(({ theme }) => ({
+  minHeight: "84px",
+  color: theme.palette.primary.main,
+  borderBottom: `1.5px solid rgba(47, 52, 56, 0.22)`,
   [theme.breakpoints.up("xs")]: {
     display: "none",
   },
   [theme.breakpoints.up("md")]: {
     display: "flex",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     gap: "18px",
   },
 }));
@@ -41,32 +46,29 @@ const DesktopNavItem = styled("button")(({ theme }) => ({
   all: "unset",
   cursor: "pointer",
   position: "relative",
-  padding: "10px 16px",
-  borderRadius: "12px",
+  padding: "8px 10px",
   color: "inherit",
-  fontWeight: 500,
-  letterSpacing: "0.2px",
-  transition: "transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background-color 220ms ease",
-  border: "2px solid transparent",
+  fontSize: "0.95rem",
+  fontWeight: 700,
+  transition: "transform 180ms ease, color 180ms ease",
 
   "&::after": {
     content: '""',
     position: "absolute",
-    left: "12px",
-    right: "12px",
-    bottom: "6px",
-    height: "2px",
+    left: "8px",
+    right: "8px",
+    bottom: "2px",
+    height: "3px",
     transform: "scaleX(0)",
     transformOrigin: "left",
-    transition: "transform 220ms ease",
-    backgroundColor: theme.palette.primary.main,
+    transition: "transform 180ms ease",
+    backgroundColor: theme.palette.secondary.main,
+    opacity: 0.72,
   },
 
   "&:hover": {
-    transform: "translateY(-2px)",
-    borderColor: theme.palette.primary.main,
-    boxShadow: "0 10px 24px rgba(0,0,0,0.18)",
-    backgroundColor: "rgba(255,255,255,0.06)",
+    color: theme.palette.secondary.main,
+    transform: "rotate(-1deg) translateY(-1px)",
   },
 
   "&:hover::after": {
@@ -74,18 +76,19 @@ const DesktopNavItem = styled("button")(({ theme }) => ({
   },
 
   "&:active": {
-    transform: "scale(0.96)",
+    transform: "scale(0.98)",
   },
 
   "&:focus-visible": {
-    outline: `2px solid ${theme.palette.primary.main}`,
+    outline: `2px dashed ${theme.palette.secondary.main}`,
     outlineOffset: "3px",
   },
 }));
 
 
 const MobileMenuItem = styled(MenuItem)(({ theme }) => ({
-  borderRadius: "10px",
+  fontFamily: theme.typography.fontFamily,
+  color: theme.palette.primary.main,
   margin: "4px 8px",
   transition: "transform 180ms ease, background-color 180ms ease",
   "&:hover": {
@@ -94,6 +97,20 @@ const MobileMenuItem = styled(MenuItem)(({ theme }) => ({
   },
   "&:active": {
     transform: "scale(0.98)",
+  },
+}));
+
+const LogoMark = styled("button")(({ theme }) => ({
+  all: "unset",
+  cursor: "pointer",
+  fontSize: "2rem",
+  fontWeight: 800,
+  letterSpacing: 0,
+  color: theme.palette.primary.main,
+  transform: "rotate(-2deg)",
+  "&:focus-visible": {
+    outline: `2px dashed ${theme.palette.secondary.main}`,
+    outlineOffset: "4px",
   },
 }));
 
@@ -120,21 +137,28 @@ export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
-        position="absolute"
-
+        elevation={0}
+        position="static"
+        color="transparent"
+        sx={{ backgroundImage: "none", boxShadow: "none", px: { xs: 1, md: 4 } }}
       >
         <StyledMobileToolbar>
-          <LanguageSwitcher />
-          <IconButton
-            size="large"
-            aria-label="open navigation menu"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            onClick={handleMenu}
-            color="inherit"
-          >
-            <MenuIcon />
-          </IconButton>
+          <LogoMark onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            &lt;/&gt;
+          </LogoMark>
+          <Stack direction="row" spacing={1} alignItems="center">
+            <LanguageSwitcher />
+            <IconButton
+              size="large"
+              aria-label="open navigation menu"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+          </Stack>
 
           <Menu
             id="menu-appbar"
@@ -152,26 +176,48 @@ export default function Navbar() {
               <StyledNavLink>{t("nav.skills")}</StyledNavLink>
             </MobileMenuItem>
 
+            <MobileMenuItem onClick={() => handleSmoothScroll("experience")}>
+              <StyledNavLink>{t("nav.experience")}</StyledNavLink>
+            </MobileMenuItem>
+
             <MobileMenuItem onClick={() => handleSmoothScroll("projects")}>
               <StyledNavLink>{t("nav.projects")}</StyledNavLink>
+            </MobileMenuItem>
+
+            <MobileMenuItem onClick={() => handleSmoothScroll("contact")}>
+              <StyledNavLink>{t("nav.contact")}</StyledNavLink>
             </MobileMenuItem>
           </Menu>
         </StyledMobileToolbar>
 
         <StyledDesktopToolbar variant="regular">
-          <DesktopNavItem onClick={() => handleSmoothScroll("about")}>
-            {t("nav.about")}
-          </DesktopNavItem>
+          <LogoMark onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            &lt;/&gt;
+          </LogoMark>
 
-          <DesktopNavItem onClick={() => handleSmoothScroll("skills")}>
-            {t("nav.skills")}
-          </DesktopNavItem>
+          <Stack direction="row" spacing={2.5} alignItems="center">
+            <DesktopNavItem onClick={() => handleSmoothScroll("about")}>
+              {t("nav.about")}
+            </DesktopNavItem>
 
-          <DesktopNavItem onClick={() => handleSmoothScroll("projects")}>
-            {t("nav.projects")}
-          </DesktopNavItem>
+            <DesktopNavItem onClick={() => handleSmoothScroll("skills")}>
+              {t("nav.skills")}
+            </DesktopNavItem>
 
-          <LanguageSwitcher />
+            <DesktopNavItem onClick={() => handleSmoothScroll("experience")}>
+              {t("nav.experience")}
+            </DesktopNavItem>
+
+            <DesktopNavItem onClick={() => handleSmoothScroll("projects")}>
+              {t("nav.projects")}
+            </DesktopNavItem>
+
+            <DesktopNavItem onClick={() => handleSmoothScroll("contact")}>
+              {t("nav.contact")}
+            </DesktopNavItem>
+
+            <LanguageSwitcher />
+          </Stack>
         </StyledDesktopToolbar>
       </AppBar>
     </Box>
